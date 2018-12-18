@@ -6,73 +6,126 @@
     <title>Dooj Match</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
+
+
   <body>
     <main>
+
     <section class="head-foot">
+      <span class="logo">
+      <img src="assets/name-logo.svg" class="logo-name">
+      </span>
+      <section class="center-content">
+        <!-- <form class="form"> -->
+          <ul class="list">
+            <li>
+                <p>i live in<input type="text" name="location" class="location" autocomplete="off" placeholder="" required></input></p>
+            </li>
+            <li>
+                <p>
+                  in a
+                  <select class="housing" name="housing">
+                    <option></option>
+                    <option>apartment</option>
+                    <option>house</option>
+                    <option>tiny house</option>
+                    <option>van</option>
+                  </select>
+                </p>
+            </li>
+            <li>
+                <p class="form3-p">
+                  my favorite
+                  <span>
+                      <br>activity is
+                    <select class="activity" name="activity">
+                      <option value=""></option>
+                      <option value="netflix">netflix</option>
+                      <option value="trail-running">trail-running</option>
+                      <option value="gaming">gaming</option>
+                      <option value="traveling">traveling</option>
+                    </select>
+                  </span>
+                </p>
+              </form>
+            </li>
+            <li>
+                <p class="form4-p">
+                  and I'm a big fan of
+                  <select class="enjoys" name="enjoys">
+                    <option value=""></option>
+                    <option value="fur">fur</option>
+                    <option value="slobber">slobber</option>
+                    <option value="mud">mud</option>
+                    <option value="chewn shoes">chewed shoes</option>
+                  </select>
+                </p>
+            </li>
+          </ul>
+        <!-- </form> -->
+      </section>
+      <section class="results" style="display:none;">
+      </section>
       <section class="sidebar">
         <img src="assets/boston-icon.svg" class="boston-icon">
         <h2 hidden>find your perfect mate</h2>
         <h2 class="search">search</h2>
+        <h2 class="contact" hidden>contact</h2>
       </section>
-      <span class="logo">
-      <img src="assets/name-logo.svg" class="logo-name">
-      </span>
     </section>
 
-    <section class="center-content">
-      <ul class="list">
-        <li>
-          <form class="form form1">
-            <p>i live in<input type="text" name="location" class="location"></input></p>
-          </form>
-        </li>
-        <li>
-          <form class="form form2">
-            <p>
-              in a
-              <select class="housing" name="housing">
-                <option></option>
-                <option>apartment</option>
-                <option>house</option>
-                <option>tiny house</option>
-                <option>van</option>
-              </select>
-            </p>
-
-          </form>
-        </li>
-        <li>
-          <form class="form form3">
-            <p class="form3-p">
-              my favorite
-              <span>
-                  <br>activity is
-                <select class="activity" name="activity">
-                  <option value=""></option>
-                  <option value="netflix">netflix</option>
-                  <option value="trail-running">trail-running</option>
-                  <option value="gaming">gaming</option>
-                  <option value="traveling">traveling</option>
+    <!-- <section class="center-content">
+      <form class="form">
+        <ul class="list">
+          <li>
+              <p>i live in<input type="text" name="location" class="location" autocomplete="off" required></input></p>
+          </li>
+          <li>
+              <p>
+                in a
+                <select class="housing" name="housing">
+                  <option></option>
+                  <option>apartment</option>
+                  <option>house</option>
+                  <option>tiny house</option>
+                  <option>van</option>
                 </select>
-              </span>
-            </p>
-          </form>
-        </li>
-        <li>
-          <form class="form form4">
-            <p class="form4-p">
-              and I'm a big fan of
-              <select class="enjoys" name="enjoys">
-                <option value=""></option>
-                <option value="fur">fur</option>
-                <option value="slobber">slobber</option>
-                <option value="mud">mud</option>
-                <option value="chewn shoes">chewed shoes</option>
-              </select>
-            </p>
-          </form>
-        </li>
-      </ul>
+              </p>
+          </li>
+          <li>
+              <p class="form3-p">
+                my favorite
+                <span>
+                    <br>activity is
+                  <select class="activity" name="activity">
+                    <option value=""></option>
+                    <option value="netflix">netflix</option>
+                    <option value="trail-running">trail-running</option>
+                    <option value="gaming">gaming</option>
+                    <option value="traveling">traveling</option>
+                  </select>
+                </span>
+              </p>
+            </form>
+          </li>
+          <li>
+              <p class="form4-p">
+                and I'm a big fan of
+                <select class="enjoys" name="enjoys">
+                  <option value=""></option>
+                  <option value="fur">fur</option>
+                  <option value="slobber">slobber</option>
+                  <option value="mud">mud</option>
+                  <option value="chewn shoes">chewed shoes</option>
+                </select>
+              </p>
+          </li>
+        </ul>
+      </form>
+    </section> -->
+
+    <section hidden class="loader-gif">
+      <span>loader goes here </span>
     </section>
     </main>
     <script src="dooj.js"></script>
