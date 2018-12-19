@@ -44,7 +44,7 @@ p {
   color: #D00D02;
 }
 
-ul {
+ul.list {
   list-style-type: none;
   padding: 0;
   display: flex;
@@ -151,7 +151,7 @@ input.location {
   padding: 0;
 }
 
-ul li:nth-child(2){
+ul.list li:nth-child(2){
   display: flex;
   flex-direction: row-reverse;
 }
@@ -175,12 +175,47 @@ section.resultsLoaded {
 }
 
 div.petProfile {
-  overflow: scroll;
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; */
+  height: 415px;
+  width: 100vw;
+  margin: auto 0 auto 0;
 }
 
-div.petProfile img.petImg {
+div.isScroll {
+  overflow: scroll; 
+}
+div.imgWrap {
+  width: 100vw;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+div.nameWrap {
+  width: 100vw;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* div.imgWrap {
   width: 250px;
   height: 250px;
+  display: inline-block;
+  position: relative;
+  padding-top: 30px;
+} */
+
+div.petProfile img.petImg {
+  height: 100%;
+  display: inherit;
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
@@ -193,11 +228,30 @@ div.petProfile img.downArrow {
 h1.doojName {
   color: #D0021B;
   font-size: 28px;
+  padding: 35px 0 28px 0;
 }
 
-/* ul.doojInfo {
+ul.doojInfo {
+  list-style-type: none;
+}
+
+ul.isHidden {
   position: absolute;
-} */
+}
+
+ul.isVisible {
+  position: relative;
+  padding: 0;
+}
+
+ul.doojInfo li:nth-child(n+2) {
+  padding-top: 25px;
+}
+
+ul.doojInfo li {
+  text-align: center;
+  font-size: 18px;
+}
 
 /*-----------------------Transitions & Animations----------------------------*/
 

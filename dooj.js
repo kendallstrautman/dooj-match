@@ -17,10 +17,12 @@ const centerSection1 = document.querySelector('section.center-content')
       activityTag = document.querySelector('select.activity')
       enjoysTag = document.querySelector('select.enjoys')
       resultsSection = document.querySelector("section.results")
-      petTag = document.querySelector("div.petProfile")
-      nameTag = document.querySelector("h1.doojName")
-      infoList = document.querySelector("ul.doojInfo")
+      // petTag = document.querySelector("div.petProfile")
+      // nameTag = document.querySelector("h1.doojName")
+      // infoList = document.querySelector("ul.doojInfo")
       inputTag = document.querySelector("input.location")
+      resultsTag = document.querySelector("section.results")
+      // arrowTag = document.querySelector("img.downArrow")
       resultsNum = 10
 
       httpSolve = "https://cors-anywhere.herokuapp.com/"
@@ -70,6 +72,7 @@ const getPetData = (zipcode) => {
       })
   	})
   	.then(cleanData => {
+      //POSSIBLY ADD ANOTHER STEP HERE? to convert the cleanData values (that are strings) toLowerCase
       resultsSection.style = ""
       resultsSection.innerHTML = ""
 
@@ -81,13 +84,17 @@ const getPetData = (zipcode) => {
         resultsSection.innerHTML =
         `
 				<section class="resultsLoaded">
-				<div class="petProfile">
-          <img class="petImg" src="${pet.image}">
-          <h1 class="doojName">
-            ${pet.name}
-          </h1>
-          <img class="downArrow" src="assets/down_arrow.png">
-          <ul class="doojInfo">
+        <div class="petProfile">
+          <div class="imgWrap">
+            <img class="petImg" src="${pet.image}">
+          </div>
+          <div class="nameWrap">
+            <h1 class="doojName">
+              ${pet.name}
+            </h1>
+            <img class="downArrow" src="assets/down_arrow.png">
+          </div>
+          <ul class="doojInfo isHidden">
             <li>sex: ${pet.sex}</li>
             <li>breed: ${pet.breed}</li>
             <li>age: ${pet.age}</li>
@@ -95,7 +102,7 @@ const getPetData = (zipcode) => {
           </ul>
 				</div>
 				</section>
-				`
+        `
   	})
   	.catch(error => console.error(error))
 }
@@ -202,7 +209,7 @@ searchBtn.addEventListener('click', () => {
   if (locationTag.value == '') {
     alert('please fill in your city or zip')
   } else {
-    searchBtn.classList.add(isHidden)
+    searchBtn.classList.add('isHidden')
     const zipcode = locationTag.value
           housing = housingTag.value
           activity = activityTag.value
@@ -217,6 +224,7 @@ searchBtn.addEventListener('click', () => {
 
     loader()
 
+
     event.preventDefault()
 
 
@@ -227,4 +235,34 @@ searchBtn.addEventListener('click', () => {
 
 inputTag.addEventListener('click', () => {
   inputTag.setAttribute("placeholder", "zipcode")
+})
+
+//listen for a click on the down arrow, then reveal the dooj info 
+//and remove the arrow. also add 'isScroll' to petProfile div 
+
+
+resultsTag.addEventListener('click', () => {
+  console.log('click arrow')
+
+  const petTag = document.querySelector("div.petProfile")
+    infoList = document.querySelector("ul.doojInfo")
+    arrowTag = document.querySelector("img.downArrow")
+    nameTag = document.querySelector("h1.doojName")
+
+    //TRY to get all the text to lowerCase - maybe do in the ajax call
+  // console.log(nameTag.textContent.toLowerCase())
+
+  // let infoListItems = []
+  
+  // infoList.forEach(li => {
+  //   infoListItems.push(li.textContent)
+  // })
+
+  // console.log(infoListItems.toLowerCase())
+
+  arrowTag.classList.add('isHidden')
+  infoList.classList.remove('isHidden')
+  infoList.classList.add('isVisible')
+  petTag.classList.add('isScroll')
+  nameTag.style = ('padding: 35px 0 5px 0')
 })
