@@ -205,14 +205,6 @@ div.nameWrap {
   justify-content: center;
 }
 
-/* div.imgWrap {
-  width: 250px;
-  height: 250px;
-  display: inline-block;
-  position: relative;
-  padding-top: 30px;
-} */
-
 div.petProfile img.petImg {
   height: 100%;
   display: inherit;
@@ -292,3 +284,5 @@ img.blob {
   position: absolute;
   z-index: -1;
 }
+
+/*-----------------------------------------------------------------------------*/
