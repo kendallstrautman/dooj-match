@@ -270,3 +270,25 @@ ul.doojInfo li {
 .isVisible {
   visibility: visible;
 }
+
+/*----------------------LOADER----------------------------------------------*/
+
+div.loaderWrap {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+img.gif {
+  width: 200px;
+}
+
+img.blob {
+  height: 300px;
+  position: absolute;
+  z-index: -1;
+}

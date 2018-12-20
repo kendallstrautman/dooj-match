@@ -72,6 +72,7 @@ const getPetData = (zipcode) => {
       })
   	})
   	.then(cleanData => {
+      //add loader step in here???? to get the time right?? 
       //POSSIBLY ADD ANOTHER STEP HERE? to convert the cleanData values (that are strings) toLowerCase
       resultsSection.style = ""
       resultsSection.innerHTML = ""
@@ -80,6 +81,11 @@ const getPetData = (zipcode) => {
       randomNum = Math.floor(Math.random() * Math.floor(resultsNum))
       console.log(cleanData[randomNum])
       const pet = cleanData[randomNum]
+
+      window.setTimeout( () => {
+
+        //takes the loader off after 1.5s then adds the new pet profile
+        loaderOut()
 
         resultsSection.innerHTML =
         `
@@ -103,6 +109,8 @@ const getPetData = (zipcode) => {
 				</div>
 				</section>
         `
+      }, 1500)
+  
   	})
   	.catch(error => console.error(error))
 }
@@ -159,30 +167,53 @@ const getPetData = (zipcode) => {
 }
 */
 
-const loader = () => {
-   return fetch(gifUrl)
-    .then(response => response.json())
-    .then(data => {
-      return data.data.images.original.url
-    })
-    .then(src => {
+// const loader = () => {
+//    return fetch(gifUrl)
+//     .then(response => response.json())
+//     .then(data => {
+//       return data.data.images.original.url
+//     })
+//     .then(src => {
 
-      console.log(src)
-      addLoader(src)
-    })
-    .catch(error => console.error(error))
+//       console.log(src)
+//       addLoader(src)
+//     })
+//     .catch(error => console.error(error))
 
-}
+// }
 
 
 //change the loader to be a real gif - couldnt hack the giphy api
+let randomNum = Math.floor(Math.random() * Math.floor(4))
+const whichGif = () => {
+  const path = "assets/gifs/"
+  const frenchPug = path + "giphy_french_pug.gif"
+        callWaiting = path + "giphy_phone.gif"
+        pomPom = path + "giphy_pom.gif"
+        happyPug = path + "giphy_pug.gif"
 
-const addLoader = src => {
+  let gifs = [frenchPug, callWaiting, pomPom, happyPug]
+
+  console.log(gifs[randomNum])
+  return gifs[randomNum]
+}
+
+const loaderIn = () => {
+
   centerSection1.innerHTML = ''
+  let gif = whichGif().toString()
+
   centerSection1.innerHTML +=
-  `
-  <img src="assets/giphy(3).gif">
-  `
+      `
+      <div class="loaderWrap">
+        <img class="blob" src="assets/blob1.png">
+        <img class="gif" src="${gif}">
+      </div>
+      `
+}
+
+const loaderOut = () => {
+  centerSection1.innerHTML = ''
 }
 
 // let loader = () => {
@@ -220,10 +251,9 @@ searchBtn.addEventListener('click', () => {
     console.log(zipcode, housing, activity, enjoys)
     // centerSection1.classList.add('isHidden')
 
+    loaderIn()
+
     getPetData(zipcode)
-
-    loader()
-
 
     event.preventDefault()
 
