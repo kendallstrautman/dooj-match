@@ -290,14 +290,12 @@ searchBtn.addEventListener('click', () => {
 //listen for a click on the down arrow, then reveal the dooj info 
 //and remove the arrow. also add 'isScroll' to petProfile div 
 
-//listen for down arrow click
-resultsTag.addEventListener('click', () => {
-
+const showResults = () => {
   //set variables   
   const petTag = document.querySelector("div.petProfile")
-    infoList = document.querySelector("ul.doojInfo")
-    arrowTag = document.querySelector("img.downArrow")
-    nameTag = document.querySelector("h1.doojName")
+  infoList = document.querySelector("ul.doojInfo")
+  arrowTag = document.querySelector("img.downArrow")
+  nameTag = document.querySelector("h1.doojName")
 
   //hide arrow
   arrowTag.classList.add('isHidden')
@@ -311,4 +309,14 @@ resultsTag.addEventListener('click', () => {
 
   //adjust padding issue
   nameTag.style = ('padding: 35px 0 5px 0')
+}
+
+//listen for touchstart - for mobile / tablet
+resultsTag.addEventListener('touchstart', () => {
+  showResults()
+})
+
+//listen for down arrow click
+resultsTag.addEventListener('click', () => {
+  showResults()
 })

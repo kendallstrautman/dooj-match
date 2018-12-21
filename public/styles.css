@@ -38,6 +38,7 @@ body {
 h2, p {
   font-size: inherit;
   letter-spacing: inherit;
+  font-weight: 100;
 }
 
 p {
@@ -59,7 +60,7 @@ section.head-foot {
  flex-direction: column;
  position: absolute;
  /* z-index: -1; */
- height: 95vh;
+ height: 85vh;
  width: 100vw;
  justify-content: space-between;
 }
@@ -71,9 +72,9 @@ span.logo {
 }
 
 img.logo-name {
-  padding: 40px 30px 0 0;
-  width: 120px;
-  height: 85px;
+  padding: 20px 30px 0 0;
+  width: 100px;
+  height: 67px;
 }
 
 section.sidebar {
@@ -117,15 +118,15 @@ section.center-content ul {
 }
 
 ul.list li:nth-child(n+2) {
-  padding: 66px 0 0 0;
+  padding: 48px 0 0 0;
 }
 
 ul.list li:first-child {
   padding: 0 0 0 8px;
 }
 
-p input,
-p select {
+input,
+select {
   border: solid 1px #D00D02;
   border-radius: 9px;
   outline: none;
@@ -133,7 +134,7 @@ p select {
   font-family: 'Basis Grotesque Bold';
   text-align: center;
   font-size: 22px;
-  color: inherit;
+  color: #D00D02;
   /* color:#4C3A26; */
   /* color: #F5A623; */
   -webkit-appearance: none;
@@ -142,6 +143,11 @@ p select {
   width: 145px;
   text-align-last:center;
   margin-left: 15px;
+  text-align-last: center;
+}
+
+option {
+  text-align: center;
 }
 
 input.location {
@@ -153,7 +159,7 @@ input.location {
 
 ul.list li:nth-child(2){
   display: flex;
-  flex-direction: row-reverse;
+  justify-content: flex-end;
 }
 
 p.form3-p span {
@@ -220,6 +226,7 @@ div.petProfile img.downArrow {
 h1.doojName {
   color: #D0021B;
   font-size: 28px;
+  font-weight: 100;
   padding: 35px 0 28px 0;
 }
 
