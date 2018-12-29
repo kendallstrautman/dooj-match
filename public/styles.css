@@ -125,10 +125,13 @@ ul.list li:first-child {
   padding: 0 0 0 8px;
 }
 
+/* SELECT and INPUT STYLES*/
+
 input,
 select {
   border: solid 1px #D00D02;
   border-radius: 9px;
+  height: 32px;
   outline: none;
   background-color: #F4F4F4;
   font-family: 'Basis Grotesque Bold';
@@ -139,12 +142,66 @@ select {
   /* color: #F5A623; */
   -webkit-appearance: none;
   autocomplete: none;
-  height: 28px;
-  width: 145px;
   text-align-last:center;
   margin-left: 15px;
   text-align-last: center;
 }
+
+/*-----Janky IOS Safari solve to center select options*/
+
+/*----------HOUSING SELECT*/
+select.housing {
+  width: 145px;
+}
+
+select.housingLrg {
+  padding-left: 15px;
+}
+
+select.housingMed {
+  padding-left: 38px;
+}
+
+select.housingSml {
+  padding-left: 50px
+}
+
+
+/*----------ACTIVITY SELECT*/
+select.activity {
+  width: 150px;
+}
+
+select.activityLrg {
+  padding-left: 8px;
+}
+
+select.activityMed {
+  padding-left: 28px;
+}
+
+select.activitySml {
+  padding-left: 36px;
+}
+
+/*----------ENJOYS SELECT*/
+select.enjoys {
+  width: 145px;
+}
+
+select.enjoysLrg{
+  width: 168px;
+}
+
+select.enjoysMed {
+  padding-left: 32px;
+}
+
+select.enjoysSml {
+  padding-left: 50px;
+}
+
+/*-----------------------------------------------------*/
 
 option {
   text-align: center;
@@ -153,7 +210,7 @@ option {
 input.location {
   margin-left: 15px;
   height: 26px;
-  width: 143px;
+  width: 142px;
   padding: 0;
 }
 

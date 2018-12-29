@@ -120,6 +120,69 @@ const centerSection1 = document.querySelector('section.center-content')
       // apiUrl = httpSolve + "https://api.petfinder.com/pet.getRandom?key=c715fdd4f4f563f91c16bcb257961ca7&animal=dog&output=basic&format=json&location="
       gifUrl = "https://api.giphy.com/v1/stickers/random?api_key=L7c4MF0M0eLssZC0GoKIb4Df9yeZimZq&tag=dog&fmt=json&rating=g"
 
+/*----------------------ADJUST SELECT OPTION PADDING IOS SAFARI--------------------*/
+
+if (
+  navigator.userAgent.indexOf('Safari') != -1 
+  && navigator.userAgent.indexOf('Chrome') == -1
+) {
+  
+  console.log('Safari-Mode')
+
+  housingTag.addEventListener("change", () => {
+    //when someone selects housing, check which value it is, 
+    //if its a shorter one, update the padding
+
+    const selection = housingTag.value
+
+    if(selection.length > 8) {
+      console.log(housingTag.classList)
+      housingTag.classList.add('housingLrg') 
+      housingTag.classList.remove('housingMed', 'housingSml')
+    } else if (selection.length > 4) {
+      housingTag.classList.add('housingMed')
+      housingTag.classList.remove('housingLrg', 'housingSml')
+    } else {
+      housingTag.classList.add('housingSml')
+      housingTag.classList.remove('housingMed', 'housingLrg')
+    }
+
+  })
+
+  activityTag.addEventListener("change", () => {
+    const selection = activityTag.value
+
+    if(selection.length > 12) {
+      activityTag.classList.add('activityLrg')
+      activityTag.classList.remove('activityMed', 'activitySml')
+    } else if (selection.length > 8) {
+      activityTag.classList.add('activityMed')
+      activityTag.classList.remove('activityLrg', 'activitySml')
+    } else {
+      activityTag.classList.add('activitySml')
+      activityTag.classList.remove('activityLrg','activityMed')
+    }
+
+  })
+
+  enjoysTag.addEventListener("change", () => {
+    const selection = enjoysTag.value
+    console.log(selection.length)
+    
+    if(selection.length > 10) {
+      enjoysTag.classList.add('enjoysLrg')
+      enjoysTag.classList.remove('enjoysMed', 'enjoysSml')
+    } else if (selection.length > 6) {
+      enjoysTag.classList.add('enjoysMed')
+      enjoysTag.classList.remove('enjoysSml', 'enjoysLrg')
+    } else {
+      enjoysTag.classList.add('enjoysSml')
+      enjoysTag.classList.remove('enjoysMed', 'enjoysLrg')
+    }
+  })
+}
+
+
 
 /*----------------------API CALL------------------------------------------ */
 
