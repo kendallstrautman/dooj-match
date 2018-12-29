@@ -1,12 +1,5 @@
 /* NOTES & TODO's ***************************************************************
 
- - make it so that when longer options are selected on landing
- that the width of the input element grows to give space
-
- - make the data to lowercase 
-
- - add data conditionals for L == large, F == female etc. 
-
  - add funny conditionals based on user input that adjust the api url
 
 */
@@ -203,18 +196,19 @@ const cleanPetData = (pet) => {
 
     //account for variability in petfinder data, make full words
     cleanPet.forEach(value => {
+
       if(value == 'f') {
         value += 'emale'
-      } else if (value == 'm') {
+      } else if (value == 'm' && value == cleanPet[5]) {
         value += 'ale'
       } else if (value == 's') {
         value += 'mall'
-      } else if (value == 'm') {
+      } else if (value == 'm' && value == cleanPet[2]) {
         value += 'edium'
       } else if (value == 'l') {
         value += 'arge'
       } 
-        
+
       pet[key] = value
     })
 
