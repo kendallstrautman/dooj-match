@@ -38,6 +38,7 @@ body {
 h2, p {
   font-size: inherit;
   letter-spacing: inherit;
+  font-weight: 100;
 }
 
 p {
@@ -59,7 +60,7 @@ section.head-foot {
  flex-direction: column;
  position: absolute;
  /* z-index: -1; */
- height: 95vh;
+ height: 85vh;
  width: 100vw;
  justify-content: space-between;
 }
@@ -71,9 +72,9 @@ span.logo {
 }
 
 img.logo-name {
-  padding: 40px 30px 0 0;
-  width: 120px;
-  height: 85px;
+  padding: 20px 30px 0 0;
+  width: 100px;
+  height: 67px;
 }
 
 section.sidebar {
@@ -117,43 +118,105 @@ section.center-content ul {
 }
 
 ul.list li:nth-child(n+2) {
-  padding: 66px 0 0 0;
+  padding: 48px 0 0 0;
 }
 
 ul.list li:first-child {
   padding: 0 0 0 8px;
 }
 
-p input,
-p select {
+/* SELECT and INPUT STYLES*/
+
+input,
+select {
   border: solid 1px #D00D02;
   border-radius: 9px;
+  height: 32px;
   outline: none;
   background-color: #F4F4F4;
   font-family: 'Basis Grotesque Bold';
   text-align: center;
   font-size: 22px;
-  color: inherit;
+  color: #D00D02;
   /* color:#4C3A26; */
   /* color: #F5A623; */
   -webkit-appearance: none;
   autocomplete: none;
-  height: 28px;
-  width: 145px;
   text-align-last:center;
   margin-left: 15px;
+  text-align-last: center;
+}
+
+/*-----Janky IOS Safari solve to center select options*/
+
+/*----------HOUSING SELECT*/
+select.housing {
+  width: 145px;
+}
+
+select.housingLrg {
+  padding-left: 15px;
+}
+
+select.housingMed {
+  padding-left: 38px;
+}
+
+select.housingSml {
+  padding-left: 50px
+}
+
+
+/*----------ACTIVITY SELECT*/
+select.activity {
+  width: 150px;
+}
+
+select.activityLrg {
+  padding-left: 8px;
+}
+
+select.activityMed {
+  padding-left: 28px;
+}
+
+select.activitySml {
+  padding-left: 36px;
+}
+
+/*----------ENJOYS SELECT*/
+select.enjoys {
+  width: 145px;
+}
+
+select.enjoysLrg{
+  width: 168px;
+}
+
+select.enjoysMed {
+  padding-left: 32px;
+}
+
+select.enjoysSml {
+  padding-left: 50px;
+}
+
+/*-----------------------------------------------------*/
+
+option {
+  text-align: center;
 }
 
 input.location {
   margin-left: 15px;
   height: 26px;
-  width: 143px;
+  width: 142px;
   padding: 0;
 }
 
 ul.list li:nth-child(2){
   display: flex;
-  flex-direction: row-reverse;
+  justify-content: flex-end;
 }
 
 p.form3-p span {
@@ -220,6 +283,7 @@ div.petProfile img.downArrow {
 h1.doojName {
   color: #D0021B;
   font-size: 28px;
+  font-weight: 100;
   padding: 35px 0 28px 0;
 }
 

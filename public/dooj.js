@@ -86,7 +86,7 @@ const loader = () => {
 
 
 //TRY to get all the text to lowerCase - maybe do in the ajax call
-  // console.log(nameTag.textContent.toLowerCase())
+  // console.log(nameTag.textContent.cleanPetDataCase())
 
   // let infoListItems = []
   
@@ -94,7 +94,7 @@ const loader = () => {
   //   infoListItems.push(li.textContent)
   // })
 
-  // console.log(infoListItems.toLowerCase())
+  // console.log(infoListItems.cleanPetDataCase())
 
 /*---------------------GLOBAL VARIABLES------------------------------------- */
 
@@ -120,8 +120,111 @@ const centerSection1 = document.querySelector('section.center-content')
       // apiUrl = httpSolve + "https://api.petfinder.com/pet.getRandom?key=c715fdd4f4f563f91c16bcb257961ca7&animal=dog&output=basic&format=json&location="
       gifUrl = "https://api.giphy.com/v1/stickers/random?api_key=L7c4MF0M0eLssZC0GoKIb4Df9yeZimZq&tag=dog&fmt=json&rating=g"
 
+/*----------------------ADJUST SELECT OPTION PADDING IOS SAFARI--------------------*/
+
+if (
+  navigator.userAgent.indexOf('Safari') != -1 
+  && navigator.userAgent.indexOf('Chrome') == -1
+) {
+  
+  console.log('Safari-Mode')
+
+  housingTag.addEventListener("change", () => {
+    //when someone selects housing, check which value it is, 
+    //if its a shorter one, update the padding
+
+    const selection = housingTag.value
+
+    if(selection.length > 8) {
+      console.log(housingTag.classList)
+      housingTag.classList.add('housingLrg') 
+      housingTag.classList.remove('housingMed', 'housingSml')
+    } else if (selection.length > 4) {
+      housingTag.classList.add('housingMed')
+      housingTag.classList.remove('housingLrg', 'housingSml')
+    } else {
+      housingTag.classList.add('housingSml')
+      housingTag.classList.remove('housingMed', 'housingLrg')
+    }
+
+  })
+
+  activityTag.addEventListener("change", () => {
+    const selection = activityTag.value
+
+    if(selection.length > 12) {
+      activityTag.classList.add('activityLrg')
+      activityTag.classList.remove('activityMed', 'activitySml')
+    } else if (selection.length > 8) {
+      activityTag.classList.add('activityMed')
+      activityTag.classList.remove('activityLrg', 'activitySml')
+    } else {
+      activityTag.classList.add('activitySml')
+      activityTag.classList.remove('activityLrg','activityMed')
+    }
+
+  })
+
+  enjoysTag.addEventListener("change", () => {
+    const selection = enjoysTag.value
+    console.log(selection.length)
+    
+    if(selection.length > 10) {
+      enjoysTag.classList.add('enjoysLrg')
+      enjoysTag.classList.remove('enjoysMed', 'enjoysSml')
+    } else if (selection.length > 6) {
+      enjoysTag.classList.add('enjoysMed')
+      enjoysTag.classList.remove('enjoysSml', 'enjoysLrg')
+    } else {
+      enjoysTag.classList.add('enjoysSml')
+      enjoysTag.classList.remove('enjoysMed', 'enjoysLrg')
+    }
+  })
+}
+
+
 
 /*----------------------API CALL------------------------------------------ */
+
+/*----------PET OBJECT MANIPULATION*/
+
+
+const cleanPetData = (pet) => {
+
+  //initialize an empty array to hold new key values
+  let cleanPet = []
+
+  //iterate over each key in the pet obj
+  Object.keys(pet).forEach(key => {
+
+    //convert value to lowercase, add to cleanPet array
+    let newValue = pet[key] && pet[key].toLowerCase()
+    cleanPet.push(newValue)
+
+    //account for variability in petfinder data, make full words
+    cleanPet.forEach(value => {
+      if(value == 'f') {
+        value += 'emale'
+      } else if (value == 'm') {
+        value += 'ale'
+      } else if (value == 's') {
+        value += 'mall'
+      } else if (value == 'm') {
+        value += 'edium'
+      } else if (value == 'l') {
+        value += 'arge'
+      } 
+        
+      pet[key] = value
+    })
+
+    return pet
+
+  })
+}
+
+/*--------------------------------------*/
+
 
 //lets get the pet data from petfinder api and update the dom
 const getPetData = (zipcode) => {
@@ -141,8 +244,8 @@ const getPetData = (zipcode) => {
           size: pet.size.$t,
           image: pet.media.photos.photo[2].$t,
           breed: pet.breeds.breed.$t,
-          sex: pet.sex.$t,
-          description: pet.description.$t
+          sex: pet.sex.$t
+          // description: pet.description.$t
         }
       })
     })
@@ -150,14 +253,15 @@ const getPetData = (zipcode) => {
     //with this clean data, update the dom
   	.then(cleanData => {
       
-      //POSSIBLY ADD ANOTHER STEP HERE? to convert the cleanData values (that are strings) toLowerCase
+      //POSSIBLY ADD ANOTHER STEP HERE? to convert the cleanData values (that are strings) cleanPetDataCase
       resultsSection.style = ""
       resultsSection.innerHTML = ""
 
       //add a math random here to pick a random dog from the data
       randomNum = Math.floor(Math.random() * Math.floor(resultsNum))
-      console.log(cleanData[randomNum])
       const pet = cleanData[randomNum]
+
+      cleanPetData(pet)
 
       //set a 1.5s timeout so the dom gets updated after the loader runs
       window.setTimeout( () => {
@@ -290,14 +394,12 @@ searchBtn.addEventListener('click', () => {
 //listen for a click on the down arrow, then reveal the dooj info 
 //and remove the arrow. also add 'isScroll' to petProfile div 
 
-//listen for down arrow click
-resultsTag.addEventListener('click', () => {
-
+const showResults = () => {
   //set variables   
   const petTag = document.querySelector("div.petProfile")
-    infoList = document.querySelector("ul.doojInfo")
-    arrowTag = document.querySelector("img.downArrow")
-    nameTag = document.querySelector("h1.doojName")
+  infoList = document.querySelector("ul.doojInfo")
+  arrowTag = document.querySelector("img.downArrow")
+  nameTag = document.querySelector("h1.doojName")
 
   //hide arrow
   arrowTag.classList.add('isHidden')
@@ -311,4 +413,14 @@ resultsTag.addEventListener('click', () => {
 
   //adjust padding issue
   nameTag.style = ('padding: 35px 0 5px 0')
+}
+
+//listen for touchstart - for mobile / tablet
+resultsTag.addEventListener('touchstart', () => {
+  showResults()
+})
+
+//listen for down arrow click
+resultsTag.addEventListener('click', () => {
+  showResults()
 })
