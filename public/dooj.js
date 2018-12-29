@@ -86,7 +86,7 @@ const loader = () => {
 
 
 //TRY to get all the text to lowerCase - maybe do in the ajax call
-  // console.log(nameTag.textContent.toLowerCase())
+  // console.log(nameTag.textContent.cleanPetDataCase())
 
   // let infoListItems = []
   
@@ -94,7 +94,7 @@ const loader = () => {
   //   infoListItems.push(li.textContent)
   // })
 
-  // console.log(infoListItems.toLowerCase())
+  // console.log(infoListItems.cleanPetDataCase())
 
 /*---------------------GLOBAL VARIABLES------------------------------------- */
 
@@ -186,6 +186,46 @@ if (
 
 /*----------------------API CALL------------------------------------------ */
 
+/*----------PET OBJECT MANIPULATION*/
+
+
+const cleanPetData = (pet) => {
+
+  //initialize an empty array to hold new key values
+  let cleanPet = []
+
+  //iterate over each key in the pet obj
+  Object.keys(pet).forEach(key => {
+
+    //convert value to lowercase, add to cleanPet array
+    let newValue = pet[key] && pet[key].toLowerCase()
+    cleanPet.push(newValue)
+
+    //account for variability in petfinder data, make full words
+    cleanPet.forEach(value => {
+      if(value == 'f') {
+        value += 'emale'
+      } else if (value == 'm') {
+        value += 'ale'
+      } else if (value == 's') {
+        value += 'mall'
+      } else if (value == 'm') {
+        value += 'edium'
+      } else if (value == 'l') {
+        value += 'arge'
+      } 
+        
+      pet[key] = value
+    })
+
+    return pet
+
+  })
+}
+
+/*--------------------------------------*/
+
+
 //lets get the pet data from petfinder api and update the dom
 const getPetData = (zipcode) => {
 
@@ -204,8 +244,8 @@ const getPetData = (zipcode) => {
           size: pet.size.$t,
           image: pet.media.photos.photo[2].$t,
           breed: pet.breeds.breed.$t,
-          sex: pet.sex.$t,
-          description: pet.description.$t
+          sex: pet.sex.$t
+          // description: pet.description.$t
         }
       })
     })
@@ -213,14 +253,15 @@ const getPetData = (zipcode) => {
     //with this clean data, update the dom
   	.then(cleanData => {
       
-      //POSSIBLY ADD ANOTHER STEP HERE? to convert the cleanData values (that are strings) toLowerCase
+      //POSSIBLY ADD ANOTHER STEP HERE? to convert the cleanData values (that are strings) cleanPetDataCase
       resultsSection.style = ""
       resultsSection.innerHTML = ""
 
       //add a math random here to pick a random dog from the data
       randomNum = Math.floor(Math.random() * Math.floor(resultsNum))
-      console.log(cleanData[randomNum])
       const pet = cleanData[randomNum]
+
+      cleanPetData(pet)
 
       //set a 1.5s timeout so the dom gets updated after the loader runs
       window.setTimeout( () => {
