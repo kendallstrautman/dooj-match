@@ -1,0 +1,352 @@
+/*-------------------------FONTS----------------------------------------------*/
+
+@font-face {
+    font-family: 'Basis Grotesque Bold';
+    src: url(assets/fonts/basis_grotesque_bold.otf) format('opentype');
+    font-weight: normal;
+  }
+
+@font-face {
+    font-family: 'Basis Grotesque Regular';
+    src: url(assets/fonts/basis_grotesque_regular.otf) format('opentype');
+    font-weight: normal;
+  }
+
+/*-----------------------MAIN STYLES (MOBILE - Landing)------------------------------------------*/
+
+* {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html, body {
+  position: fixed;
+  margin: 0;
+}
+
+body {
+  font-family: 'Basis Grotesque Bold', Helvetica, sans-serif;
+  background-color: #F4F4F4;
+  color: #4C3A26;
+  height: 100%;
+  width: 100%;
+  font-size: 22px;
+  letter-spacing: .5px;
+}
+
+h2, p {
+  font-size: inherit;
+  letter-spacing: inherit;
+  font-weight: 100;
+}
+
+p {
+  color: #D00D02;
+}
+
+ul.list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  max-width: 500px;
+}
+
+section.head-foot {
+ display: flex;
+ flex-direction: column;
+ position: absolute;
+ /* z-index: -1; */
+ height: 85vh;
+ width: 100vw;
+ justify-content: space-between;
+}
+
+span.logo {
+  display: flex;
+  justify-content: flex-end;
+  width: inherit;
+}
+
+img.logo-name {
+  padding: 20px 30px 0 0;
+  width: 100px;
+  height: 67px;
+}
+
+section.sidebar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 52px;
+}
+
+section.sidebar img,
+section.sidebar h2.search {
+  position: absolute;
+}
+
+section.sidebar img {
+  bottom: 0px;
+  left: 30px;
+  width: 46px;
+  height: 52px;
+}
+
+h2.search {
+  bottom: 35px;
+  right:30px;
+  transform: translateY(26px);
+  height: 26px;
+}
+
+section.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* height: 95vh; */
+  margin: auto;
+}
+
+section.center-content ul {
+  width: inherit;
+  padding: 0 30px 0 30px;
+}
+
+ul.list li:nth-child(n+2) {
+  padding: 48px 0 0 0;
+}
+
+ul.list li:first-child {
+  padding: 0 0 0 8px;
+}
+
+/* SELECT and INPUT STYLES*/
+
+input,
+select {
+  border: solid 1px #D00D02;
+  border-radius: 9px;
+  height: 32px;
+  outline: none;
+  background-color: #F4F4F4;
+  font-family: 'Basis Grotesque Bold';
+  text-align: center;
+  font-size: 22px;
+  color: #D00D02;
+  /* color:#4C3A26; */
+  /* color: #F5A623; */
+  -webkit-appearance: none;
+  autocomplete: none;
+  text-align-last:center;
+  margin-left: 15px;
+  text-align-last: center;
+}
+
+/*-----Janky IOS Safari solve to center select options*/
+
+/*----------HOUSING SELECT*/
+select.housing {
+  width: 145px;
+}
+
+select.housingLrg {
+  padding-left: 15px;
+}
+
+select.housingMed {
+  padding-left: 38px;
+}
+
+select.housingSml {
+  padding-left: 50px
+}
+
+
+/*----------ACTIVITY SELECT*/
+select.activity {
+  width: 150px;
+}
+
+select.activityLrg {
+  padding-left: 8px;
+}
+
+select.activityMed {
+  padding-left: 28px;
+}
+
+select.activitySml {
+  padding-left: 36px;
+}
+
+/*----------ENJOYS SELECT*/
+select.enjoys {
+  width: 145px;
+}
+
+select.enjoysLrg{
+  width: 168px;
+}
+
+select.enjoysMed {
+  padding-left: 32px;
+}
+
+select.enjoysSml {
+  padding-left: 50px;
+}
+
+/*-----------------------------------------------------*/
+
+option {
+  text-align: center;
+}
+
+input.location {
+  margin-left: 15px;
+  height: 26px;
+  width: 142px;
+  padding: 0;
+}
+
+ul.list li:nth-child(2){
+  display: flex;
+  justify-content: flex-end;
+}
+
+p.form3-p span {
+  padding-left: 45px;
+}
+
+p.form4-p select {
+  margin: 15px 0 0 130px;
+}
+
+/*-----------------------Results Page (MOBILE)--------------------------------*/
+
+section.resultsLoaded {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 100vh;
+}
+
+div.petProfile {
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; */
+  height: 415px;
+  width: 100vw;
+  margin: auto 0 auto 0;
+}
+
+div.isScroll {
+  overflow: scroll; 
+}
+div.imgWrap {
+  width: 100vw;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+div.nameWrap {
+  width: 100vw;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+div.petProfile img.petImg {
+  height: 100%;
+  display: inherit;
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+div.petProfile img.downArrow {
+  width: 35px;
+  height: 13px;
+}
+
+h1.doojName {
+  color: #D0021B;
+  font-size: 28px;
+  font-weight: 100;
+  padding: 35px 0 28px 0;
+}
+
+ul.doojInfo {
+  list-style-type: none;
+}
+
+ul.isHidden {
+  position: absolute;
+}
+
+ul.isVisible {
+  position: relative;
+  padding: 0;
+}
+
+ul.doojInfo li:nth-child(n+2) {
+  padding-top: 25px;
+}
+
+ul.doojInfo li {
+  text-align: center;
+  font-size: 18px;
+}
+
+/*-----------------------Transitions & Animations----------------------------*/
+
+
+
+
+
+
+
+/*----------------------TOGGLING CENTER--------------------------------------*/
+
+.isHidden {
+  visibility: hidden;
+}
+
+.isVisible {
+  visibility: visible;
+}
+
+/*----------------------LOADER----------------------------------------------*/
+
+div.loaderWrap {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+img.gif {
+  width: 200px;
+}
+
+img.blob {
+  height: 300px;
+  position: absolute;
+  z-index: -1;
+}
+
+/*-----------------------------------------------------------------------------*/
