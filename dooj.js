@@ -95,6 +95,7 @@ let   isHidden
 
 const centerSection1 = document.querySelector('section.center-content')
       searchBtn = document.querySelector('h2.search')
+      contactBtn = document.querySelector('h2.contact')
       bostonBtn = document.querySelector('img.boston-icon')
       sidebarTextTag = document.querySelector('h2.sidebarText')
       doojLogo = document.querySelector('img.logo-name')
@@ -320,6 +321,7 @@ const loaderIn = () => {
 
   //clear the landing content
   centerSection1.innerHTML = ''
+  sidebarTextTag.innerHTML = "wingardium caninosa..."
 
   //pick a gif, convert to string
   let gif = whichGif().toString()
@@ -339,11 +341,20 @@ const loaderOut = () => {
 
   //clear the gif from the dom
   centerSection1.innerHTML = ''
+  if(window.innerWidth >= 1024) {
+    contactBtn.removeAttribute('hidden')
+    sidebarTextTag.classList.add('sidebarResults')
+    sidebarTextTag.innerHTML = "here's to forever..."
+  }
 
 }
 
 
 /*---------------LANDING PAGE EVENT-LISTENERS---------------------------------*/ 
+
+doojLogo.addEventListener("click", () => {
+  document.location.reload()
+})
 
 //if the screen width is > 1024, remove hidden attribute from sidebarTextTag
 if(window.innerWidth >= 1024) {
