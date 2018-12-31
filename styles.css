@@ -45,6 +45,11 @@ p {
   color: #D00D02;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 ul.list {
   list-style-type: none;
   padding: 0;
@@ -460,8 +465,28 @@ img.blob {
     margin: 15px 0 0 15px;
   }
 
-  
+  /*-----RESULTS*/
 
+  div.imgWrap {
+    padding: 0;
+    height: 325px;
+  }
+
+  div.petProfile {
+    height: 600px;
+  }
+
+  h1.doojName {
+    padding-bottom: 15px;
+  }
+
+  ul.doojInfo li {
+    font-size: 28px;
+  }
+
+  div.petProfile img.downArrow {
+    padding-top: 20px;
+  }
   
 
 }
