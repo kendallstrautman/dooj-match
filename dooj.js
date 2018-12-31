@@ -96,9 +96,10 @@ let   isHidden
 const centerSection1 = document.querySelector('section.center-content')
       searchBtn = document.querySelector('h2.search')
       bostonBtn = document.querySelector('img.boston-icon')
+      sidebarTextTag = document.querySelector('h2.sidebarText')
       doojLogo = document.querySelector('img.logo-name')
       loaderSection = document.querySelector('section.loader')
-      // formTag = document.querySelector('form.form')
+      breakTag = document.getElementById('break1')
       locationTag = document.querySelector('input.location')
       housingTag = document.querySelector('select.housing')
       activityTag = document.querySelector('select.activity')
@@ -343,6 +344,12 @@ const loaderOut = () => {
 
 
 /*---------------LANDING PAGE EVENT-LISTENERS---------------------------------*/ 
+
+//if the screen width is > 1024, remove hidden attribute from sidebarTextTag
+if(window.innerWidth >= 1024) {
+  sidebarTextTag.removeAttribute('hidden')
+  breakTag.setAttribute('hidden', true)
+}
 
 //Listen for input tag click
 inputTag.addEventListener('click', () => {

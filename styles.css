@@ -51,7 +51,6 @@ ul.list {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
   max-width: 500px;
 }
 
@@ -285,6 +284,7 @@ h1.doojName {
   font-size: 28px;
   font-weight: 100;
   padding: 35px 0 28px 0;
+  text-align: center;
 }
 
 ul.doojInfo {
@@ -349,4 +349,93 @@ img.blob {
   z-index: -1;
 }
 
-/*-----------------------------------------------------------------------------*/
+/*-------------------------MEDIAQUERIES----------------------------------------*/
+
+/*----------------IPHONE 5*/
+@media screen and (max-width: 321px) {
+  /*adjust the vh height? 
+  
+  --reduce the space between homepage selections - currently overlapping the logo
+  --make the loading animation width smaller 
+   
+  */
+}
+
+/*----------------IPHONE 6,7,8*/
+
+@media screen and (min-width: 414px) {
+
+
+}
+
+/*-------------------IPHONEX weirdness??*/
+
+@media screen and (min-width: 375px) {
+
+}
+
+/*------------------IPAD*/
+
+@media screen and (min-width: 768px) {
+  /*check to see what width of the phone the safari bar disappears
+  and increase the vh to 100% */
+}
+
+
+/*----------------IPAD-PRO*/
+
+@media screen and (min-width: 1024px) {
+ /*full desktop styles start here*/
+  
+  body {
+    font-size: 28px;
+    line-height: 32px;
+    letter-spacing: 35;  
+    height: 100%;        
+  }
+
+  img.logo-name {
+    padding: 35px 40px 0 0;
+  }
+
+  h2.sidebarText {
+    color: #F5A623;
+    transform: rotate(270deg);
+    transform-origin: left;
+    height: 40px;
+    width: 315px;
+    margin: 0;
+    padding: 120px 0 0 70px;
+  }
+
+  h2.search {
+   padding: 0 20px 40px 0;
+  }
+  
+  section.sidebar img {
+    top: 0;
+    left: 0;
+    padding: 40px 0 0 40px;
+  }
+
+  ul.list  {
+    max-width: 675px;
+  }
+
+  p.form3-p span {
+    padding: 0;
+  }
+
+}
+
+/*-----------CENTER CONTENT*/
+
+section.head-foot {
+  height: 100vh;
+}
+
+/*---------------MEGA-SCREENS*/
+
+@media screen and (min-width: 1440px) {
+  /*adjust any padding for mega screens??*/
+}
