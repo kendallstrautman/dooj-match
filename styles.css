@@ -107,6 +107,10 @@ h2.search {
   height: 26px;
 }
 
+h2.sidebarText {
+  opacity: 0;
+}
+
 section.center-content {
   display: flex;
   justify-content: center;
@@ -252,8 +256,9 @@ div.petProfile {
 }
 
 div.isScroll {
-  overflow: scroll; 
+  overflow-y: scroll; 
 }
+
 div.imgWrap {
   width: 100vw;
   height: 250px;
@@ -312,6 +317,12 @@ ul.doojInfo li:nth-child(n+2) {
 ul.doojInfo li {
   text-align: center;
   font-size: 18px;
+}
+
+h2.contact {
+  position: absolute;
+  right: 30px;
+  bottom: 4px;
 }
 
 /*-----------------------Transitions & Animations----------------------------*/
@@ -384,6 +395,7 @@ img.blob {
 @media screen and (min-width: 768px) {
   /*check to see what width of the phone the safari bar disappears
   and increase the vh to 100% */
+
 }
 
 
@@ -407,6 +419,14 @@ img.blob {
     padding: 35px 40px 0 0;
   }
 
+  img.gif {
+    width: 250px;
+  }
+
+  img.blob {
+    height: 350px;
+  }
+
   h2.sidebarText {
     color: #F5A623;
     transform: rotate(270deg);
@@ -415,6 +435,7 @@ img.blob {
     width: 315px;
     margin: 0;
     padding: 120px 0 0 70px;
+    opacity: 1;
   }
 
   h2.sidebarResults {

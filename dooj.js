@@ -199,7 +199,7 @@ const cleanPetData = (pet) => {
     //account for variability in petfinder data, make full words
     cleanPet.forEach(value => {
 
-      if (value == 'undefined') {
+      if (value == undefined) {
         value = 'unknown'
       } //if its the name, add 'meet' to it
       else if (value == cleanPet[0] && value.length < 10) {
@@ -258,7 +258,6 @@ const getPetData = (zipcode) => {
     //with this clean data, update the dom
   	.then(cleanData => {
       
-      //POSSIBLY ADD ANOTHER STEP HERE? to convert the cleanData values (that are strings) cleanPetDataCase
       resultsSection.style = ""
       resultsSection.innerHTML = ""
 
@@ -279,24 +278,27 @@ const getPetData = (zipcode) => {
         //update the dom with the pet profile
         resultsSection.innerHTML =
         `
-				<section class="resultsLoaded">
-        <div class="petProfile">
-          <div class="imgWrap">
-            <img class="petImg" src="${pet.image}">
-          </div>
-          <div class="nameWrap">
-            <h1 class="doojName">
-              ${pet.name}
-            </h1>
-            <img class="downArrow" src="assets/down_arrow.png">
-          </div>
-          <ul class="doojInfo isHidden">
-            <li>sex: ${pet.sex}</li>
-            <li>breed: ${pet.breed}</li>
-            <li>age: ${pet.age}</li>
-            <li>size: ${pet.size}</li>
-          </ul>
-				</div>
+        
+        <section class="resultsLoaded">
+            <div class="petProfile">
+              <div class="imgWrap">
+                  <img class="petImg" src="${pet.image}">
+              </div>
+              <div class="nameWrap">
+                <h1 class="doojName">
+                  ${pet.name}
+                </h1>
+                <img class="downArrow" src="assets/down_arrow.png">
+              </div>
+              <ul class="doojInfo isHidden">
+                <li>sex: ${pet.sex}</li>
+                <li>breed: ${pet.breed}</li>
+                <li>age: ${pet.age}</li>
+                <li>size: ${pet.size}</li>
+                <li class="contactBtnMobile"><a href="mailto:${pet.contact}"> contact shelter</a></li>
+              </ul>
+            </div>
+          </a>
 				</section>
         `
       }, 1500)
@@ -351,10 +353,10 @@ const loaderIn = () => {
 const loaderOut = () => {
 
   //clear the gif from the dom
-  centerSection1.innerHTML = ''
+centerSection1.innerHTML = ''
+
   if(window.innerWidth >= 1024) {
     contactBtn.removeAttribute('hidden')
-
     contactAnchor = document.querySelector("a.contactEmail")
     contactAnchor.setAttribute('href', `mailto:${localStorage.getItem('contact')}`)
     sidebarTextTag.classList.add('sidebarResults')
@@ -370,11 +372,7 @@ doojLogo.addEventListener("click", () => {
   document.location.reload()
 })
 
-//if the screen width is > 1024, remove hidden attribute from sidebarTextTag
-if(window.innerWidth >= 1024) {
-  sidebarTextTag.removeAttribute('hidden')
-  breakTag.setAttribute('hidden', true)
-}
+
 
 //Listen for input tag click
 inputTag.addEventListener('click', () => {
@@ -426,6 +424,7 @@ const showResults = () => {
   infoList = document.querySelector("ul.doojInfo")
   arrowTag = document.querySelector("img.downArrow")
   nameTag = document.querySelector("h1.doojName") 
+  contactBtnMobile = document.querySelector('li.contactBtnMobile')
 
   //hide arrow
   arrowTag.classList.add('isHidden')
@@ -436,10 +435,11 @@ const showResults = () => {
   infoList.classList.add('isVisible')
 
   if(window.innerWidth < 1024) {
-    console.log('window <1024!!')
     //allow scroll for the pet profile on mobile
     petTag.classList.add('isScroll')
     nameTag.style = ('padding: 35px 0 5px 0')
+  } else {
+    contactBtnMobile.setAttribute('hidden', true)
   }
 }
 
