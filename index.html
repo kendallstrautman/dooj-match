@@ -18,10 +18,12 @@
       <section class="center-content">
           <ul class="list">
             <li>
-                <p>i live in<input type="text" name="location" class="location" autocomplete="off" placeholder="" required></input></p>
+                <p class="form1-p">i live in
+                  <input type="text" name="location" class="location" autocomplete="off" placeholder="" required></input>
+                </p>
             </li>
             <li>
-                <p>
+                <p class="form2-p">
                   in a
                   <div class="textAlign">
                     <select class="housing" name="housing">
@@ -38,7 +40,7 @@
                 <p class="form3-p">
                   my favorite
                   <span>
-                      <br>activity is
+                      <br id="break1">activity is
                     <select class="activity" name="activity">
                       <option value=""></option>
                       <option value="netflix">netflix</option>
@@ -65,27 +67,29 @@
           </ul>
       </section>
       <section class="results" style="display:none;">
-          <div class="petProfile">
-            <div class="imgWrap">
-              <img class="petImg" src="">
-            </div>
-            <h1 class="doojName">
-            </h1>
-              <img class="downArrow" src="">
-            <ul class="doojInfo">
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
-          </div>
-      </section>
-      <section class="sidebar">
-        <img src="assets/boston-icon.svg" class="boston-icon">
-        <h2 hidden>find your perfect mate</h2>
-        <h2 class="search">search</h2>
-        <h2 class="contact" hidden>contact</h2>
-      </section>
+              <div class="petProfile">
+                <div class="imgWrap">
+                  <img class="petImg" src="">
+                </div>
+                <h1 class="doojName">
+                </h1>
+                  <img class="downArrow" src="">
+                <ul class="doojInfo">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </div>
+          </section>
+          <section class="sidebar">
+            <!-- <div class="sidebarWrap"></div> -->
+              <img src="assets/boston-icon.svg" class="boston-icon">
+              <h2 class="sidebarText">find your perfect mate</h2>
+            <!-- </div> -->
+            <h2 class="search">search</h2>
+            <h2 class="contact" hidden><a class="contactEmail">contact</a></h2>
+          </section>
     </section>
 
     <section hidden class="loader-gif">

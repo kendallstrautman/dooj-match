@@ -95,10 +95,12 @@ let   isHidden
 
 const centerSection1 = document.querySelector('section.center-content')
       searchBtn = document.querySelector('h2.search')
+      contactBtn = document.querySelector('h2.contact')
       bostonBtn = document.querySelector('img.boston-icon')
+      sidebarTextTag = document.querySelector('h2.sidebarText')
       doojLogo = document.querySelector('img.logo-name')
       loaderSection = document.querySelector('section.loader')
-      // formTag = document.querySelector('form.form')
+      breakTag = document.getElementById('break1')
       locationTag = document.querySelector('input.location')
       housingTag = document.querySelector('select.housing')
       activityTag = document.querySelector('select.activity')
@@ -197,17 +199,25 @@ const cleanPetData = (pet) => {
     //account for variability in petfinder data, make full words
     cleanPet.forEach(value => {
 
-      if(value == 'f') {
-        value += 'emale'
-      } else if (value == 'm' && value == cleanPet[5]) {
-        value += 'ale'
-      } else if (value == 's') {
-        value += 'mall'
-      } else if (value == 'm' && value == cleanPet[2]) {
-        value += 'edium'
-      } else if (value == 'l') {
-        value += 'arge'
-      } 
+      if (value == undefined) {
+        value = 'unknown'
+      } //if its the name, add 'meet' to it
+      else if (value == cleanPet[0] && value.length < 10) {
+        value = "meet " + value
+      } //if its not the name, lets update the data
+      else if (value !== cleanPet[0]) {
+        if(value == 'f') {
+          value += 'emale'
+        } else if (value == 'm' && value == cleanPet[5]) {
+          value += 'ale'
+        } else if (value == 's' ) {
+          value += 'mall'
+        } else if (value == 'm' && value == cleanPet[2]) {
+          value += 'edium'
+        } else if (value == 'l') {
+          value += 'arge'
+        } 
+      }
 
       pet[key] = value
     })
@@ -238,7 +248,8 @@ const getPetData = (zipcode) => {
           size: pet.size.$t,
           image: pet.media.photos.photo[2].$t,
           breed: pet.breeds.breed.$t,
-          sex: pet.sex.$t
+          sex: pet.sex.$t,
+          contact: pet.contact.email.$t
           // description: pet.description.$t
         }
       })
@@ -247,7 +258,6 @@ const getPetData = (zipcode) => {
     //with this clean data, update the dom
   	.then(cleanData => {
       
-      //POSSIBLY ADD ANOTHER STEP HERE? to convert the cleanData values (that are strings) cleanPetDataCase
       resultsSection.style = ""
       resultsSection.innerHTML = ""
 
@@ -256,6 +266,8 @@ const getPetData = (zipcode) => {
       const pet = cleanData[randomNum]
 
       cleanPetData(pet)
+
+      localStorage.setItem("contact", pet.contact)
 
       //set a 1.5s timeout so the dom gets updated after the loader runs
       window.setTimeout( () => {
@@ -266,24 +278,27 @@ const getPetData = (zipcode) => {
         //update the dom with the pet profile
         resultsSection.innerHTML =
         `
-				<section class="resultsLoaded">
-        <div class="petProfile">
-          <div class="imgWrap">
-            <img class="petImg" src="${pet.image}">
-          </div>
-          <div class="nameWrap">
-            <h1 class="doojName">
-              ${pet.name}
-            </h1>
-            <img class="downArrow" src="assets/down_arrow.png">
-          </div>
-          <ul class="doojInfo isHidden">
-            <li>sex: ${pet.sex}</li>
-            <li>breed: ${pet.breed}</li>
-            <li>age: ${pet.age}</li>
-            <li>size: ${pet.size}</li>
-          </ul>
-				</div>
+        
+        <section class="resultsLoaded">
+            <div class="petProfile">
+              <div class="imgWrap">
+                  <img class="petImg" src="${pet.image}">
+              </div>
+              <div class="nameWrap">
+                <h1 class="doojName">
+                  ${pet.name}
+                </h1>
+                <img class="downArrow" src="assets/down_arrow.png">
+              </div>
+              <ul class="doojInfo isHidden">
+                <li>sex: ${pet.sex}</li>
+                <li>breed: ${pet.breed}</li>
+                <li>age: ${pet.age}</li>
+                <li>size: ${pet.size}</li>
+                <li class="contactBtnMobile"><a href="mailto:${pet.contact}"> contact shelter</a></li>
+              </ul>
+            </div>
+          </a>
 				</section>
         `
       }, 1500)
@@ -319,6 +334,7 @@ const loaderIn = () => {
 
   //clear the landing content
   centerSection1.innerHTML = ''
+  sidebarTextTag.innerHTML = "wingardium caninosa..."
 
   //pick a gif, convert to string
   let gif = whichGif().toString()
@@ -337,12 +353,26 @@ const loaderIn = () => {
 const loaderOut = () => {
 
   //clear the gif from the dom
-  centerSection1.innerHTML = ''
+centerSection1.innerHTML = ''
+
+  if(window.innerWidth >= 1024) {
+    contactBtn.removeAttribute('hidden')
+    contactAnchor = document.querySelector("a.contactEmail")
+    contactAnchor.setAttribute('href', `mailto:${localStorage.getItem('contact')}`)
+    sidebarTextTag.classList.add('sidebarResults')
+    sidebarTextTag.innerHTML = "here's to forever..."
+  }
 
 }
 
 
 /*---------------LANDING PAGE EVENT-LISTENERS---------------------------------*/ 
+
+doojLogo.addEventListener("click", () => {
+  document.location.reload()
+})
+
+
 
 //Listen for input tag click
 inputTag.addEventListener('click', () => {
@@ -393,28 +423,39 @@ const showResults = () => {
   const petTag = document.querySelector("div.petProfile")
   infoList = document.querySelector("ul.doojInfo")
   arrowTag = document.querySelector("img.downArrow")
-  nameTag = document.querySelector("h1.doojName")
+  nameTag = document.querySelector("h1.doojName") 
+  contactBtnMobile = document.querySelector('li.contactBtnMobile')
 
   //hide arrow
   arrowTag.classList.add('isHidden')
+  arrowTag.style = "padding-top: 0;"
 
   //show pet info
   infoList.classList.remove('isHidden')
   infoList.classList.add('isVisible')
 
-  //allow scroll for the pet profile
-  petTag.classList.add('isScroll')
-
-  //adjust padding issue
-  nameTag.style = ('padding: 35px 0 5px 0')
+  if(window.innerWidth < 375) {
+    petTag.classList.add('isScroll')
+    nameTag.style = ('padding: 8px 0 5px 0')
+  } else if(window.innerWidth < 1024) {
+    //allow scroll for the pet profile on mobile
+    petTag.classList.add('isScroll')
+    nameTag.style = ('padding: 35px 0 6px 0')
+  } else {
+    contactBtnMobile.setAttribute('hidden', true)
+  }
 }
 
-//listen for touchstart - for mobile / tablet
+  //listen for touchstart - for mobile / tablet
 resultsTag.addEventListener('touchstart', () => {
-  showResults()
+    showResults()
 })
 
-//listen for down arrow click
+  //listen for down arrow click
 resultsTag.addEventListener('click', () => {
-  showResults()
+    showResults()
 })
+
+
+
+
