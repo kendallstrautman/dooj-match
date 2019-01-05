@@ -367,27 +367,85 @@ img.blob {
 
 /*-------------------------MEDIAQUERIES----------------------------------------*/
 
-/*----------------IPHONE 5*/
+/*----------------IPHONE 5/SE */
 @media screen and (max-width: 321px) {
-  /*adjust the vh height? 
-  
-  --reduce the space between homepage selections - currently overlapping the logo
-  --make the loading animation width smaller 
-   
-  */
+
+  ul.list li:nth-child(n+2) {
+    padding-top: 20px;
+  }
+
+  select.activity {
+    margin: 8px 0 0 80px;
+  }
+
+  img.gif {
+    width: 175px;
+  }
+
+  img.blob {
+    height: 275px;
+  }
+
+  div.petProfile {
+     margin-top: 100px;
+  }
+
+  div.imgWrap {
+    padding-top: 0px;
+  }
+
+  h1.doojName {
+    padding: 12px 0 20px 0;
+  }
+
+  li.contactBtnMobile {
+    margin-bottom: 100px;
+  }
 }
 
-/*----------------IPHONE 6,7,8*/
+/*----------------IPHONE 6+,7+,8+-- 414x736*/
 
 @media screen and (min-width: 414px) {
 
+  div.imgWrap {
+    padding-top:10px;
+    height: 275px;
+  }
 
 }
 
-/*-------------------IPHONEX weirdness??*/
+/*-------------------IPHONEX ---- 375x812*/
 
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 375px) and (device-height: 812px) {
+  section.sidebar img {
+    bottom: 20px;
+  } 
 
+  h2.search {
+    bottom: 50px;
+  }
+
+  div.imgWrap {
+    padding-top:10px;
+    height: 275px;
+  }
+}
+
+/*-------------------IPHONE XMAX & XR--- 414x896*/
+
+@media screen and (device-width: 414px) and (device-height: 896px) {
+
+  section.sidebar img {
+    bottom: 10px;
+  } 
+
+  h2.search {
+    bottom: 45px;
+  }
+
+  div.petProfile {
+    height: 500px;
+  }
 }
 
 /*------------------IPAD*/

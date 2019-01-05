@@ -434,10 +434,13 @@ const showResults = () => {
   infoList.classList.remove('isHidden')
   infoList.classList.add('isVisible')
 
-  if(window.innerWidth < 1024) {
+  if(window.innerWidth < 375) {
+    petTag.classList.add('isScroll')
+    nameTag.style = ('padding: 8px 0 5px 0')
+  } else if(window.innerWidth < 1024) {
     //allow scroll for the pet profile on mobile
     petTag.classList.add('isScroll')
-    nameTag.style = ('padding: 35px 0 5px 0')
+    nameTag.style = ('padding: 35px 0 6px 0')
   } else {
     contactBtnMobile.setAttribute('hidden', true)
   }
