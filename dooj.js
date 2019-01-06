@@ -175,6 +175,16 @@ if (
       enjoysTag.classList.remove('enjoysMed', 'enjoysLrg')
     }
   })
+} else {
+  enjoysTag.addEventListener("change", () => {
+    const selection = enjoysTag.value
+    console.log(selection.length)
+    
+    if(selection.length > 10) {
+      enjoysTag.classList.add('enjoysLrg')
+      enjoysTag.classList.remove('enjoysMed', 'enjoysSml')
+    } 
+  })
 }
 
 
@@ -259,6 +269,7 @@ const getPetData = (zipcode) => {
   	.then(cleanData => {
       
       resultsSection.style = ""
+      resultsSection.classList.add('isHidden')
       resultsSection.innerHTML = ""
 
       //add a math random here to pick a random dog from the data
@@ -275,10 +286,9 @@ const getPetData = (zipcode) => {
         //takesthe loader off
         loaderOut()
         
-        //update the dom with the pet profile
+        // //update the dom with the pet profile
         resultsSection.innerHTML =
         `
-        
         <section class="resultsLoaded">
             <div class="petProfile">
               <div class="imgWrap">
@@ -298,16 +308,19 @@ const getPetData = (zipcode) => {
                 <li class="contactBtnMobile"><a href="mailto:${pet.contact}"> contact shelter</a></li>
               </ul>
             </div>
-          </a>
 				</section>
         `
+        resultsSection.classList.add('isVisible')
       }, 1500)
-  
     })
-    
     //if an error occurs, catch it and print to console
-  	.catch(error => console.error(error))
+  	.catch(error => {
+      console.error(error)
+      alert('Either something went wrong or your zipcode is not valid, please try again.')
+      location.reload(true)
+    })
 }
+
 
 /*-----------------LOADER -------------------------------------------------*/
 
@@ -349,6 +362,8 @@ const loaderIn = () => {
       `
 }
 
+
+
 //stop the loader
 const loaderOut = () => {
 
@@ -371,8 +386,6 @@ centerSection1.innerHTML = ''
 doojLogo.addEventListener("click", () => {
   document.location.reload()
 })
-
-
 
 //Listen for input tag click
 inputTag.addEventListener('click', () => {
@@ -427,7 +440,8 @@ const showResults = () => {
   contactBtnMobile = document.querySelector('li.contactBtnMobile')
 
   //hide arrow
-  arrowTag.classList.add('isHidden')
+  // arrowTag.classList.add('isHidden')
+  arrowTag.setAttribute('hidden', true)
   arrowTag.style = "padding-top: 0;"
 
   //show pet info
