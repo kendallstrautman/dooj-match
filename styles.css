@@ -73,6 +73,7 @@ span.logo {
   display: flex;
   justify-content: flex-end;
   width: inherit;
+  position: absolute;
 }
 
 img.logo-name {
