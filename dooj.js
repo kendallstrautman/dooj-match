@@ -347,7 +347,7 @@ const loaderIn = () => {
 
   //clear the landing content
   centerSection1.innerHTML = ''
-  sidebarTextTag.innerHTML = "wingardium caninosa..."
+//   sidebarTextTag.innerHTML = "wingardium caninosa..."
 
   //pick a gif, convert to string
   let gif = whichGif().toString()
